@@ -35,6 +35,40 @@ namespace Catalog.API.Controllers
             }
         }
 
+
+        [HttpGet]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        [ResponseCache(Duration = 30)]
+        public IActionResult GetById(String id)
+        {
+            try
+            {
+                var product = _productManager.GetById(id);
+                return CustomResult("Data Loaded Successfully.", product, HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return CustomResult(ex.Message, HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        [ResponseCache(Duration = 30)]
+        public IActionResult GetByCategory(string category) 
+        {
+            try
+            {
+                var products = _productManager.GetByCategory(category);
+                return CustomResult("Data Loaded Successfully.", products, HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return CustomResult(ex.Message, HttpStatusCode.BadRequest);
+            }
+        }
+
+
         [HttpPost]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.Created)]
         public IActionResult CreateProduct([FromBody] Product product)
@@ -102,7 +136,7 @@ namespace Catalog.API.Controllers
                     return CustomResult("Product has been deleted successfully", HttpStatusCode.OK);
                 }
 
-                return CustomResult("Product modified failed", HttpStatusCode.BadRequest);
+                return CustomResult("Product deleted failed", HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
