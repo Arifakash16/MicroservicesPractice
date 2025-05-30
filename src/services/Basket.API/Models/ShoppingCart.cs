@@ -1,18 +1,18 @@
 ﻿namespace Basket.API.Models
 {
-    public class ShoppingCard
+    public class ShoppingCart
     {
-        public ShoppingCard(string userName)
+        public ShoppingCart(string userName)
         {
             UserName = userName;
         }
 
-        public ShoppingCard()
+        public ShoppingCart()
         {
 
         }
         public string UserName { get; set; }
-        List<ShoppingCardItem> Items { get; set; } = new List<ShoppingCardItem>();
+        public List<ShoppingCartItem> Items { get; set; } = new List<ShoppingCartItem>();
         public decimal TotalPrice { get
             {
                 decimal totalPrice = 0;
