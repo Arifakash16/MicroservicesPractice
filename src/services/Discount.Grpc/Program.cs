@@ -1,6 +1,10 @@
+using Discount.Grpc.Repository;
 using Discount.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
 // Add services to the container.
 builder.Services.AddGrpc();
