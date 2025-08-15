@@ -22,7 +22,7 @@ message CouponRequest{
 }
 
 message DeleteDiscountRequest{
-	int32 product_id = 1;
+	string product_id = 1;
 }
 
 message DeleteDiscountResponse{
